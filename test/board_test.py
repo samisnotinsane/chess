@@ -1,12 +1,14 @@
 import unittest
 
+from chess.board import Board
+
 
 class TestBoard(unittest.TestCase):
     def setUp(self):
-        pass
+        self.board = Board()
 
     def tearDown(self) -> None:
-        pass
+        self.board = None
 
     def test_initialise(self):
         pass
