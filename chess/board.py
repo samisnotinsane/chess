@@ -21,6 +21,11 @@ class Board:
         self.white_king = "K"
         self.black_king = "k"
 
+        self.is_white_turn = True
+        self.move_count = 0
+        self.is_game_active = True
+        self.last_move = None
+
     def initialise(self) -> None:
         # step 1: create a blank board
         for _ in range(8):
