@@ -1,4 +1,6 @@
+import sys
 import unittest
+from io import StringIO
 
 from chess.board import Board
 
@@ -44,18 +46,37 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(self.board.get(7, 4), self.board.white_king)
         self.assertEqual(self.board.get(0, 4), self.board.black_king)
 
-    @unittest.skip("Not yet implemented")
     def test_get_piece(self):
-        pass
+        self.assertEqual(self.board.get(2, 0), self.board.empty)
+        self.assertEqual(self.board.get(7, 4), self.board.white_king)
+        self.assertEqual(self.board.get(0, 4), self.board.black_king)
 
-    @unittest.skip("Not yet implemented")
     def test_place_piece(self):
-        pass
+        self.board.place(4, 4, self.board.white_queen)
+        self.assertEqual(self.board.get(4, 4), self.board.white_queen)
 
-    @unittest.skip("Not yet implemented")
     def test_remove_piece(self):
-        pass
+        self.board.remove(6, 0)
+        self.assertEqual(self.board.get(6, 0), self.board.empty)
 
-    @unittest.skip("Not yet implemented")
     def test_print_state(self):
-        pass
+        expected_output = (
+            "|r|n|b|q|k|b|n|r|\n"
+            "|p|p|p|p|p|p|p|p|\n"
+            "| | | | | | | | |\n"
+            "| | | | | | | | |\n"
+            "| | | | | | | | |\n"
+            "| | | | | | | | |\n"
+            "|P|P|P|P|P|P|P|P|\n"
+            "|R|N|B|Q|K|B|N|R|\n"
+        )
+
+        # redirect stdout to capture print output
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        self.board.print_state()
+
+        # reset redirect
+        sys.stdout = sys.__stdout__
+
+        self.assertEqual(captured_output.getvalue(), expected_output)
