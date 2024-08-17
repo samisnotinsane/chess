@@ -22,10 +22,10 @@ class Move:
     def is_valid_piece(self, piece: str) -> bool:
         return piece.upper() in ["P", "N", "B", "R", "Q", "K"]
 
-    def is_valid_position(self, pos: str) -> bool:
-        if len(pos) != 2:
+    def is_valid_position(self, position: str) -> bool:
+        if len(position) != 2:
             return False
-        col, row = pos[0], pos[1]
+        col, row = position[0], position[1]
         if col.lower() not in ["a", "b", "c", "d", "e", "f", "g", "h"]:
             return False
         if row not in list(range(1, 9)):
