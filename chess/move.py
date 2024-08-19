@@ -14,7 +14,7 @@ class Move:
         return False
 
     def __repr__(self) -> str:
-        return f"Move(src={self._source},dest={self._destination},piece={self._piece})"
+        return f"{self.piece}{self._source}{self._destination}"
 
     def move_to_str(self) -> str:
         return f"{self._piece}{self._source}{self._destination}"
