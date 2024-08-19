@@ -3,9 +3,11 @@ class Move:
 
     def __init__(self, src_pos: str, dest_pos: str, piece: str):
         if not self.is_valid_piece(piece):
-            raise ValueError(
-                f"Invalid piece '{piece}'. Can only be one of: {self.valid_pieces}"
-            )
+            raise ValueError(f"Illegal piece '{piece}'")
+        if not self.is_valid_position(src_pos):
+            raise ValueError(f"Illegal start position '{src_pos}'")
+        if not self.is_valid_position(dest_pos):
+            raise ValueError(f"Illegal end position '{dest_pos}'")
 
         self._source: str = src_pos
         self._destination: str = dest_pos
@@ -29,15 +31,23 @@ class Move:
     def is_valid_piece(self, piece: str) -> bool:
         return piece.upper() in self.valid_pieces
 
+    def _is_valid_row(self, row: int) -> bool:
+        return 1 <= row <= 8
+
+    def _is_valid_col(self, col: str) -> bool:
+        legal_columns = ["a", "b", "c", "d", "e", "f", "g", "h"]
+        for c in legal_columns:
+            if c.upper() == col:
+                return True
+            if c.lower() == col:
+                return True
+        return False
+
     def is_valid_position(self, position: str) -> bool:
-        if len(position) != 2:
-            return False
         col, row = position[0], position[1]
-        if col.lower() not in ["a", "b", "c", "d", "e", "f", "g", "h"]:
-            return False
-        if row not in list(range(1, 9)):
-            return False
-        return True
+        is_valid_row = self._is_valid_row(int(row))
+        is_valid_col = self._is_valid_col(col)
+        return is_valid_col and is_valid_row
 
     @property
     def source_position(self) -> str:
