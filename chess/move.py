@@ -1,5 +1,12 @@
 class Move:
+    valid_pieces: list[str] = ["P", "N", "B", "R", "Q", "K"]
+
     def __init__(self, src_pos: str, dest_pos: str, piece: str):
+        if not self.is_valid_piece(piece):
+            raise ValueError(
+                f"Invalid piece '{piece}'. Can only be one of: {self.valid_pieces}"
+            )
+
         self._source: str = src_pos
         self._destination: str = dest_pos
         self._piece: str = piece
@@ -20,7 +27,7 @@ class Move:
         return f"{self._piece}{self._source}{self._destination}"
 
     def is_valid_piece(self, piece: str) -> bool:
-        return piece.upper() in ["P", "N", "B", "R", "Q", "K"]
+        return piece.upper() in self.valid_pieces
 
     def is_valid_position(self, position: str) -> bool:
         if len(position) != 2:
