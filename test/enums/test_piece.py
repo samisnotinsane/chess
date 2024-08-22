@@ -10,10 +10,19 @@ class TestColour:
 
 
 class TestPieceType:
-    def test_pieces(self):
+    def test_piece_types(self):
         expected_pieces = ["PAWN", "KNIGHT", "BISHOP", "ROOK", "QUEEN", "KING"]
         assert all(piece in PieceType.__members__ for piece in expected_pieces)
-        assert len(PieceType) == 6
+        assert len(PieceType) == len(expected_pieces)
+
+    def test_piece_type_uniqueness(self):
+        piece_types = list(PieceType)
+        assert len(piece_types) == len(set(piece_types))
+
+    def test_piece_type_values(self):
+        expected_values = ["P", "N", "B", "R", "Q", "K"]
+        for piece_type, expected_value in zip(PieceType, expected_values):
+            assert piece_type.value == expected_value
 
 
 class TestPieceValue:
