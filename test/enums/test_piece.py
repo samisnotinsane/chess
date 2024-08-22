@@ -1,12 +1,12 @@
 import pytest
-from chess.enums.piece import PIECE_VALUES, Colour, PieceType
+from chess.enums.piece import PIECE_VALUES, PieceColour, PieceType
 
 
 class TestColour:
     def test_black_and_white(self):
-        assert isinstance(Colour.WHITE, Colour)
-        assert isinstance(Colour.BLACK, Colour)
-        assert len(Colour) == 2
+        assert isinstance(PieceColour.WHITE, PieceColour)
+        assert isinstance(PieceColour.BLACK, PieceColour)
+        assert len(PieceColour) == 2
 
 
 class TestPieceType:

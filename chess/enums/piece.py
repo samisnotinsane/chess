@@ -20,6 +20,6 @@ PIECE_VALUES = {
 }
 
 
-class Colour(Enum):
+class PieceColour(Enum):
     WHITE = "WHITE"
     BLACK = "BLACK"
