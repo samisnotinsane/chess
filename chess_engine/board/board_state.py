@@ -58,3 +58,12 @@ class BoardState(IBoardState):
         for file, piece_type in enumerate(piece_order):
             self.set_piece_at(Square(file, 0), Piece(Colour.WHITE, piece_type))
             self.set_piece_at(Square(file, 7), Piece(Colour.BLACK, piece_type))
+
+    def make_move(self, move: Move) -> None:
+        pass
+
+    def unmake_move(self, move: Move) -> None:
+        pass
+
+    def is_king_in_check(self, colour: Colour) -> bool:
+        pass
