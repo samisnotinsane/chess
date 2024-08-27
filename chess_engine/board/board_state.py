@@ -60,10 +60,31 @@ class BoardState(IBoardState):
             self.set_piece_at(Square(file, 7), Piece(Colour.BLACK, piece_type))
 
     def make_move(self, move: Move) -> None:
+        """
+        Apply a move to the board, updating the board state.
+
+        Args:
+            move (Move): The move to apply to the board.
+        """
         pass
 
     def unmake_move(self, move: Move) -> None:
+        """
+        Undo a move on the board, reverting the board state.
+
+        Args:
+            move (Move): The move to undo.
+        """
         pass
 
     def is_king_in_check(self, colour: Colour) -> bool:
+        """
+        Check if the king of the specified colour is in check.
+
+        Args:
+            colour (Colour): The colour of the king that could be in check.
+
+        Returns:
+            bool: True if the king is in check, False otherwise.
+        """
         pass
