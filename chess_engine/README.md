@@ -36,8 +36,8 @@ This module is responsible for generating legal moves.
 
 - `move_generator.py`: Implements the `MoveGenerator` class, which generates legal moves for a given board state.
 - `move_validators/`: Contains validators for generating moves for specific piece types.
-        - `base_validator.py`: Defines the `BaseValidator` abstract base class.
-        - `pawn_validator.py`: Implements move generation for pawns.
+  - `base_validator.py`: Defines the `BaseValidator` abstract base class.
+  - `pawn_validator.py`: Implements move generation for pawns.
 
 ### utils/
 
