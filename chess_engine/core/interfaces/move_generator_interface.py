@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from ..models.move import Move
-from board.board_state import BoardState
+from chess_engine.board.board_state import BoardState
 
 
 class IMoveGenerator(ABC):

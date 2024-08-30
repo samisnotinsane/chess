@@ -2,7 +2,9 @@ from chess_engine.core.enums import PieceType
 from chess_engine.core.interfaces.move_generator_interface import IMoveGenerator
 from chess_engine.core.models.move import Move
 from chess_engine.board.board_state import BoardState
-from move_generation.move_validators.pawn_validator import PawnMoveValidator
+from chess_engine.core.move_generation.move_validators.pawn_validator import (
+    PawnMoveValidator,
+)
 
 
 class MoveGenerator(IMoveGenerator):

@@ -1,8 +1,10 @@
 from typing import Dict
+
+from ..core.models.move import Move
+from ..core.enums import Colour, PieceType
 from ..core.interfaces.board_interface import IBoardState
 from ..core.models.piece import Piece
 from ..core.models.square import Square
-from ..core.enums import Colour, PieceType
 
 
 class BoardState(IBoardState):
