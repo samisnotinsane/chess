@@ -92,12 +92,12 @@ class BoardState(IBoardState):
         """
         pass
 
-    def copy(self) -> IBoardState:
+    def copy(self) -> "BoardState":
         """
         Create a deep copy of the current board state.
 
         Returns:
-            IBoardState: A new BoardState instance with the same piece positions.
+            BoardState: A new BoardState instance with the same piece positions.
         """
         new_board = BoardState()
         new_board._board = deepcopy(self._board)
