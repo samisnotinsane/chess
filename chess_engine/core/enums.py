@@ -17,3 +17,16 @@ class PieceType(Enum):
     ROOK = auto()
     QUEEN = auto()
     KING = auto()
+
+
+class MoveDirection(Enum):
+    """
+    Represents the direction of movement of a chess piece.
+
+    For any PieceType:
+        if Colour.WHITE then MoveDirection.UP
+        if Colour.BLACK then MoveDirection.DOWN
+    """
+
+    UP = auto()
+    DOWN = auto()
