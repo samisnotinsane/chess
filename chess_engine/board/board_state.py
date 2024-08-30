@@ -1,4 +1,5 @@
 from typing import Dict
+from copy import deepcopy
 
 from ..core.models.move import Move
 from ..core.enums import Colour, PieceType
@@ -90,3 +91,14 @@ class BoardState(IBoardState):
             bool: True if the king is in check, False otherwise.
         """
         pass
+
+    def copy(self) -> IBoardState:
+        """
+        Create a deep copy of the current board state.
+
+        Returns:
+            IBoardState: A new BoardState instance with the same piece positions.
+        """
+        new_board = BoardState()
+        new_board._board = deepcopy(self._board)
+        return new_board
