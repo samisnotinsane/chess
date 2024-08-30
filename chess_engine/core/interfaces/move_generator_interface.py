@@ -20,7 +20,7 @@ class IMoveGenerator(ABC):
         pass
 
     @abstractmethod
-    def is_move_legal(self, board: BoardState, move: Move):
+    def is_move_legal(self, board: BoardState, move: Move) -> bool:
         """
         Check if a given move is legal in the current position.
 
