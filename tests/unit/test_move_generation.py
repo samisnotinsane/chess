@@ -35,7 +35,7 @@ def board() -> BoardState:
     return BoardState()
 
 
-def test_pawn_initial_move(move_generator: MoveGenerator, board: BoardState) -> None:
+def test_pawn_initial_move(move_generator: MoveGenerator, board: BoardState):
     """
     Test the initial two-square move option for pawns.
 
@@ -47,3 +47,46 @@ def test_pawn_initial_move(move_generator: MoveGenerator, board: BoardState) -> 
     assert len(moves) == 2
     assert any(move.to_square == Square(0, 2) for move in moves)
     assert any(move.to_square == Square(0, 3) for move in moves)
+
+
+def test_pawn_blocked(move_generator: MoveGenerator, board: BoardState):
+    """
+    Test that a pawn cannot move when blocked by another piece.
+
+    This test checks that no moves are generated for a pawn when there's
+    a piece directly in front of it.
+    """
+    board.set_piece_at(Square(0, 1), Piece(Colour.WHITE, PieceType.PAWN))
+    board.set_piece_at(Square(0, 2), Piece(Colour.BLACK, PieceType.PAWN))
+    moves = move_generator.generate_legal_moves(board)
+    assert len(moves) == 0
+
+
+def test_pawn_capture(move_generator: MoveGenerator, board: BoardState):
+    """
+    Test pawn capture moves.
+
+    This test verifies that a pawn can capture diagonally and still move
+    forward when not blocked.
+    """
+    board.set_piece_at(Square(1, 1), Piece(Colour.WHITE, PieceType.PAWN))
+    board.set_piece_at(Square(0, 2), Piece(Colour.WHITE, PieceType.PAWN))
+    board.set_piece_at(Square(2, 2), Piece(Colour.BLACK, PieceType.PAWN))
+    moves = move_generator.generate_legal_moves(board)
+    assert len(moves) == 4
+    assert any(move.to_square == Square(0, 2) for move in moves)
+    assert any(move.to_square == Square(2, 2) for move in moves)
+
+
+def test_pawn_en_passant(move_generator: MoveGenerator, board: BoardState):
+    """
+    Test en passant capture for pawns.
+
+    Test test checks if a pawn can perform an en passant capture when the
+    condition is met.
+    """
+    board.set_piece_at(Square(1, 4), Piece(Colour.WHITE, PieceType.PAWN))
+    board.set_piece_at(Square(0, 4), Piece(Colour.BLACK, PieceType.PAWN))
+    board._en_passant_square = Square(0, 5)
+    moves = move_generator.generate_legal_moves(board)
+    assert any(move.to_square == Square(0, 5) and move.is_en_passant for move in moves)
