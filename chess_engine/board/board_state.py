@@ -16,6 +16,7 @@ class BoardState(IBoardState):
         self._board: Dict[Square, Piece | None] = {
             Square(file, rank): None for rank in range(8) for file in range(8)
         }
+        self._en_passant_square: Square | None = None
 
     def _is_valid_square(self, square: Square) -> bool:
         return 0 <= square.file < 8 and 0 <= square.rank < 8
